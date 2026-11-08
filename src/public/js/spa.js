@@ -314,7 +314,7 @@ async function loadDashboard() {
 
 function renderDashboardTasks(data) {
   const container = document.getElementById("dashboardTaskList");
-  const upcoming = data.filter((task) => task.status !== "Selesai").slice(0, 5);
+  const upcoming = sortTasksByDeadline(data.filter((task) => task.status !== "Selesai")).slice(0, 5);
   container.replaceChildren();
   if (!upcoming.length) {
     container.appendChild(emptyState("Tidak ada tugas aktif."));
@@ -462,6 +462,10 @@ function weekRange(selectedDate) {
   start.setDate(start.getDate() - offset);
   const startKey = localDateKey(start);
   return { from: startKey, to: shiftDate(startKey, 6) };
+}
+
+function sortTasksByDeadline(data) {
+  return [...data].sort((left, right) => Date.parse(left.deadline) - Date.parse(right.deadline));
 }
 
 async function loadSchedules() {
@@ -635,10 +639,10 @@ function renderTasks() {
   const container = document.getElementById("taskList");
   const keyword = document.getElementById("searchTask").value.trim().toLocaleLowerCase("id-ID");
   const selectedStatus = document.getElementById("filterTaskStatus").value;
-  const filtered = tasks.filter((task) => {
+  const filtered = sortTasksByDeadline(tasks.filter((task) => {
     const matchesText = `${task.title} ${task.course_name}`.toLocaleLowerCase("id-ID").includes(keyword);
     return matchesText && (selectedStatus === "Semua" || task.status === selectedStatus);
-  });
+  }));
   container.replaceChildren();
   if (!filtered.length) {
     container.appendChild(emptyState(tasks.length ? "Tugas tidak ditemukan." : "Belum ada tugas."));
@@ -763,7 +767,7 @@ function renderTaskCalendar(data) {
     dayTitle.textContent = day;
     cell.appendChild(dayTitle);
     const dateKey = localDateKey(new Date(year, month, day));
-    data.filter((task) => task.deadline.slice(0, 10) === dateKey).slice(0, 2).forEach((task) => {
+    sortTasksByDeadline(data.filter((task) => task.deadline.slice(0, 10) === dateKey)).slice(0, 2).forEach((task) => {
       const deadline = document.createElement("span");
       deadline.className = "calendar-task";
       deadline.textContent = task.title;
@@ -777,7 +781,7 @@ function renderDeadlineNotifications(data) {
   const container = document.getElementById("deadlineNotifications");
   container.replaceChildren();
   const today = localDateKey(new Date());
-  const upcoming = data.filter((task) => task.status !== "Selesai" && task.deadline.slice(0, 10) >= today).slice(0, 5);
+  const upcoming = sortTasksByDeadline(data.filter((task) => task.status !== "Selesai" && task.deadline.slice(0, 10) >= today)).slice(0, 5);
   if (!upcoming.length) {
     container.appendChild(emptyState("Tidak ada deadline aktif dalam waktu dekat."));
     return;
