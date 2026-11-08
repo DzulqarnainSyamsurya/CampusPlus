@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="referrer" content="no-referrer" />
+  <title>Login | CampusPlus</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/auth.css?v=1" />
+  <script src="/js/auth.js?v=1" defer></script>
+</head>
+<body class="auth-body" data-auth-page="login">
+  <main class="auth-layout">
+    <section class="auth-story">
+      <a class="auth-brand" href="/login"><span class="brand-mark">C<span>+</span></span><span>Campus<span>Plus</span></span></a>
+      <div class="story-copy"><p class="auth-kicker">RUANG AKADEMIK PERSONAL</p><h1>Semua progresmu,<br />satu tempat.</h1><p>Jadwal kelas, deadline, dan kabar kampus dalam satu ruang yang terasa lebih tertata.</p></div>
+      <p class="story-footer">CampusPlus <span>·</span> Sistem Informasi Akademik</p>
+    </section>
+    <section class="auth-panel-wrap">
+      <div class="auth-panel">
+        <div class="mobile-brand"><span class="brand-mark">C<span>+</span></span><strong>CampusPlus</strong></div>
+        <p class="auth-kicker">AKUN MAHASISWA</p>
+        <h2>Welcome back</h2>
+        <p class="auth-description">Masuk untuk melanjutkan kegiatan akademikmu.</p>
+        <form id="loginForm" novalidate>
+          <label class="auth-field">Email atau username<input name="identifier" autocomplete="username" required autofocus placeholder="nama@kampus.ac.id" /></label>
+          <label class="auth-field">Password<span class="password-control"><input name="password" type="password" autocomplete="current-password" required placeholder="Masukkan password" /><button type="button" class="password-toggle" data-toggle-password aria-label="Tampilkan password">Lihat</button></span></label>
+          <div class="auth-form-row"><label class="check-label"><input type="checkbox" name="remember_me" />Ingat saya</label><a href="/forgot-password">Lupa password?</a></div>
+          <p class="auth-feedback" id="loginFeedback" role="alert" aria-live="polite"></p>
+          <button type="submit" class="auth-submit">Masuk <span>→</span></button>
+        </form>
+        <p class="auth-switch" id="registerPrompt">Belum punya akun? <a href="/register">Daftar</a></p>
+      </div>
+      <p class="auth-mobile-footer">CampusPlus · Sistem Informasi Akademik</p>
+    </section>
+  </main>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="referrer" content="no-referrer" />
+  <title>Daftar | CampusPlus</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/auth.css?v=1" />
+  <script src="/js/auth.js?v=1" defer></script>
+</head>
+<body class="auth-body" data-auth-page="register">
+  <main class="auth-layout auth-layout-compact">
+    <section class="auth-story">
+      <a class="auth-brand" href="/login"><span class="brand-mark">C<span>+</span></span><span>Campus<span>Plus</span></span></a>
+      <div class="story-copy"><p class="auth-kicker">MULAI DARI SINI</p><h1>Ruang belajarmu<br />dimulai di sini.</h1><p>Buat akun untuk menjaga jadwal dan pekerjaan akademik tetap dekat.</p></div>
+      <p class="story-footer">CampusPlus <span>·</span> Sistem Informasi Akademik</p>
+    </section>
+    <section class="auth-panel-wrap">
+      <div class="auth-panel auth-panel-wide">
+        <div class="mobile-brand"><span class="brand-mark">C<span>+</span></span><strong>CampusPlus</strong></div>
+        <p class="auth-kicker">REGISTRASI</p><h2>Buat akun</h2><p class="auth-description">Lengkapi informasi akunmu untuk mulai menggunakan CampusPlus.</p>
+        <form id="registerForm" novalidate>
+          <label class="auth-field">Nama lengkap<input name="full_name" autocomplete="name" required maxlength="100" placeholder="Nama sesuai identitas" /></label>
+          <div class="auth-two-col"><label class="auth-field">Username<input name="username" autocomplete="username" required minlength="3" maxlength="30" placeholder="nama.mahasiswa" /></label><label class="auth-field">Email<input name="email" type="email" autocomplete="email" required maxlength="254" placeholder="nama@kampus.ac.id" /></label></div>
+          <label class="auth-field">Password<span class="password-control"><input name="password" type="password" autocomplete="new-password" required minlength="12" maxlength="128" placeholder="Minimal 12 karakter" /><button type="button" class="password-toggle" data-toggle-password aria-label="Tampilkan password">Lihat</button></span><span class="strength-track"><span id="passwordStrength"></span></span><small id="passwordStrengthLabel">Gunakan minimal 12 karakter, huruf, dan angka.</small></label>
+          <label class="auth-field">Konfirmasi password<span class="password-control"><input name="confirm_password" type="password" autocomplete="new-password" required maxlength="128" placeholder="Ketik ulang password" /><button type="button" class="password-toggle" data-toggle-password aria-label="Tampilkan konfirmasi password">Lihat</button></span></label>
+          <p class="auth-feedback" id="registerFeedback" role="alert" aria-live="polite"></p>
+          <button type="submit" class="auth-submit">Buat akun <span>→</span></button>
+        </form>
+        <p class="auth-switch">Sudah punya akun? <a href="/login">Login</a></p>
+      </div>
+      <p class="auth-mobile-footer">CampusPlus · Sistem Informasi Akademik</p>
+    </section>
+  </main>
+</body>
+</html>

@@ -1,0 +1,287 @@
+@media (min-width: 1500px) {
+  .summary-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .activity-summary-panel {
+    grid-column: auto;
+  }
+}
+
+@media (max-width: 1100px) {
+  :root {
+    --sidebar-width: 220px;
+  }
+
+  .statistics {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .task-row {
+    grid-template-columns: minmax(150px, 1fr) minmax(140px, auto) auto;
+  }
+
+  .task-deadline {
+    grid-column: 1;
+  }
+
+  .task-row .item-actions {
+    grid-column: 3;
+    grid-row: 1 / span 2;
+  }
+}
+
+@media (max-width: 900px) {
+  .sidebar {
+    width: min(290px, calc(100vw - 54px));
+    transform: translateX(-105%);
+    transition: transform 190ms ease;
+  }
+
+  .sidebar.show {
+    transform: translateX(0);
+  }
+
+  .sidebar-scrim {
+    position: fixed;
+    inset: 0;
+    z-index: 19;
+    display: block;
+    visibility: hidden;
+    background: rgb(18 42 43 / 40%);
+    opacity: 0;
+    transition: opacity 190ms ease, visibility 190ms ease;
+  }
+
+  .sidebar-scrim.show {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  .main-content {
+    margin-left: 0;
+  }
+
+  .menu-toggle {
+    display: inline-flex;
+  }
+
+  .topbar {
+    min-height: 70px;
+    padding: 10px 18px;
+  }
+
+  .topbar h1 {
+    font-size: 17px;
+  }
+
+  .topbar-date {
+    display: none;
+  }
+
+  .page-content {
+    padding: 20px 18px 16px;
+  }
+
+  .dashboard-grid,
+  .summary-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .activity-summary-panel {
+    grid-column: auto;
+  }
+
+  .schedule-toolbar,
+  .page-heading {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .page-heading .primary-action {
+    align-self: flex-start;
+  }
+
+  .dashboard-grid,
+  .summary-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .activity-summary-panel {
+    grid-column: auto;
+  }
+
+  .schedule-filters {
+    width: 100%;
+    flex-wrap: wrap;
+  }
+
+  .schedule-filters .date-field,
+  .schedule-filters .select-field {
+    flex: 1 1 160px;
+  }
+}
+
+@media (max-width: 520px) {
+  .page-content {
+    padding: 15px 12px 12px;
+  }
+
+  .topbar {
+    padding: 9px 12px;
+  }
+
+  .topbar-tools {
+    gap: 8px;
+  }
+
+  .welcome-banner {
+    min-height: 150px;
+    padding: 22px 20px;
+  }
+
+  .welcome-banner h2 {
+    max-width: 230px;
+    font-size: 21px;
+  }
+
+  .welcome-symbol {
+    width: 56px;
+    height: 56px;
+    border-radius: 16px;
+    font-size: 24px;
+  }
+
+  .statistics {
+    gap: 9px;
+  }
+
+  .stat-card {
+    gap: 9px;
+    padding: 12px;
+  }
+
+  .stat-icon {
+    width: 36px;
+    height: 36px;
+  }
+
+  .stat-card strong {
+    font-size: 20px;
+  }
+
+  .panel {
+    padding: 16px;
+  }
+
+  .page-panel {
+    padding: 0 14px 14px;
+  }
+
+  .list-toolbar {
+    align-items: stretch;
+    flex-direction: column;
+    padding: 13px 0;
+  }
+
+  .search-field,
+  .select-field {
+    width: 100%;
+  }
+
+  .task-statistics {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .task-calendar-panel .panel-header {
+    flex-wrap: wrap;
+  }
+
+  .calendar-controls strong {
+    min-width: 100px;
+  }
+
+  .mini-stat {
+    padding: 12px;
+  }
+
+  .mini-stat strong {
+    font-size: 18px;
+  }
+
+  .task-row {
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 9px;
+  }
+
+  .task-row .task-status-select,
+  .task-row .task-deadline {
+    grid-column: 1;
+  }
+
+  .task-row .item-actions {
+    grid-column: 2;
+    grid-row: 1 / span 3;
+    flex-direction: column;
+  }
+
+  .occurrence-card {
+    grid-template-columns: 54px minmax(0, 1fr);
+    gap: 9px;
+  }
+
+  .occurrence-card > .status-badge {
+    grid-column: 2;
+    justify-self: start;
+  }
+
+  .occurrence-actions {
+    grid-column: 2;
+  }
+
+  .schedule-filters .date-field {
+    min-width: 0;
+  }
+
+  .week-controls {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .calendar-date {
+    min-height: 58px;
+    padding: 4px;
+  }
+
+  .calendar-task {
+    font-size: 8px;
+  }
+
+  .activity-row {
+    grid-template-columns: 20px minmax(0, 1fr);
+  }
+
+  .activity-row time {
+    grid-column: 2;
+    text-align: left;
+  }
+
+  .reminder-panel {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .record-dialog {
+    padding: 18px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: .01ms !important;
+    transition-duration: .01ms !important;
+  }
+}
