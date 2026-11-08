@@ -439,6 +439,7 @@ test('REST API CRUD, validasi, pagination, logging, dan persistensi', async () =
   });
   assert.equal(updatedSchedule.status, 200);
   assert.equal((await request(`/api/schedules/${scheduleId}`)).body.day, 'Rabu');
+  assert.equal((await request('/api/schedules')).body.length, 2);
   assert.equal((await request('/api/schedules/99999', { method: 'DELETE' })).status, 404);
   assert.equal((await request(`/api/schedules/${scheduleId}`, { method: 'DELETE' })).status, 200);
   assert.equal((await request(`/api/schedules/${recurringId}`, { method: 'DELETE' })).status, 200);

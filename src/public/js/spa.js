@@ -91,12 +91,18 @@ function dateLabel(dateKey, options = {}) {
 }
 
 function formatTime(dateTime) {
-  return new Date(dateTime).toLocaleTimeString("id-ID", { hour: "2-digit", minute: "2-digit" });
+  return new Date(dateTime).toLocaleTimeString("id-ID", {
+    hour: "2-digit",
+    minute: "2-digit",
+    hourCycle: "h23",
+  });
 }
 
 function formatTimestamp(value) {
   const date = new Date(`${String(value).replace(" ", "T")}Z`);
-  return Number.isNaN(date.getTime()) ? "Waktu tidak tersedia" : date.toLocaleString("id-ID", { dateStyle: "medium", timeStyle: "short" });
+  return Number.isNaN(date.getTime())
+    ? "Waktu tidak tersedia"
+    : `${date.toLocaleDateString("id-ID", { dateStyle: "medium" })}, ${formatTime(date)}`;
 }
 
 function emptyState(message, isError = false) {
@@ -234,7 +240,7 @@ function renderOccurrence(item, options = {}) {
   const statusButton = document.createElement("button");
   statusButton.type = "button";
   statusButton.className = "text-action";
-  statusButton.textContent = "Edit Status";
+  statusButton.textContent = "Status";
   statusButton.addEventListener("click", () => openOccurrenceDialog(item));
   actions.appendChild(statusButton);
 
@@ -242,7 +248,7 @@ function renderOccurrence(item, options = {}) {
     const editButton = document.createElement("button");
     editButton.type = "button";
     editButton.className = "text-action";
-    editButton.textContent = "Edit Rutin";
+    editButton.textContent = "Edit";
     editButton.addEventListener("click", () => editSchedule(item.schedule));
     const deleteButton = document.createElement("button");
     deleteButton.type = "button";
@@ -548,8 +554,15 @@ async function deleteSchedule(id) {
   }
 }
 
-function editSchedule(item) {
-  openScheduleDialog(item.schedule || schedules.find((schedule) => schedule.id === item.schedule_id));
+function editSchedule(scheduleOrOccurrence) {
+  const schedule = scheduleOrOccurrence?.id
+    ? scheduleOrOccurrence
+    : schedules.find((entry) => entry.id === scheduleOrOccurrence?.schedule_id);
+  if (!schedule) {
+    alert("Jadwal tidak ditemukan. Muat ulang halaman lalu coba lagi.");
+    return;
+  }
+  openScheduleDialog(schedule);
 }
 
 function openOccurrenceDialog(occurrence) {
@@ -661,7 +674,8 @@ function renderTasks() {
 
     const deadline = document.createElement("time");
     deadline.className = "task-deadline";
-    deadline.textContent = new Date(task.deadline).toLocaleString("id-ID", { dateStyle: "medium", timeStyle: "short" });
+    const deadlineDate = new Date(task.deadline);
+    deadline.textContent = `${deadlineDate.toLocaleDateString("id-ID", { dateStyle: "medium" })}, ${formatTime(deadlineDate)}`;
     const actions = document.createElement("div");
     actions.className = "item-actions";
     const edit = document.createElement("button");
@@ -1117,6 +1131,10 @@ function openRecordDialog(title, fields, onSave) {
     const input = field.type === "textarea" ? document.createElement("textarea") : field.type === "select" ? document.createElement("select") : document.createElement("input");
     input.name = field.name;
     input.required = Boolean(field.required);
+    if (field.pattern) input.pattern = field.pattern;
+    if (field.inputMode) input.inputMode = field.inputMode;
+    if (field.placeholder) input.placeholder = field.placeholder;
+    if (field.maxLength) input.maxLength = field.maxLength;
     if (field.type === "select") field.options.forEach((choice) => {
       const option = document.createElement("option");
       option.value = choice.value;
